@@ -3,9 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title} this is considered a change in the text
-  button(type="button", class="btn btn-secondary", onclick= double()) Left
-  div(id="double") Up the amount
-script
+  button(type="button", class="btn btn-secondary", onclick= "double()") Left
+  div(id="double") Two to the power #{power} is #{Math.pow(2, power)}.
+script.
   var value = 0;
   var power = 1;
 
@@ -15,5 +15,5 @@ script
     console.log(value)
     console.log(power)
     var result = "Two to the power " + power + " is " + Math.pow(2, power) + ".";
-    document.getElementById("double").innerHTML = result
+    document.getElementById("double").innerHTML = result:
   }
