@@ -3,5 +3,14 @@ extends layout
 block content
   h1= title
   p Welcome to #{title} this is considered a change in the text
-  button(type="button", class="btn btn-secondary") Left
+  button(type="button", class="btn btn-secondary", onclick= double()) Left
   div(id="double") Up the amount
+script
+  var value = 0;
+  var power = 1;
+
+  function double(){
+    value += 1;
+    power *= 2;
+    console.log(value)
+  }
