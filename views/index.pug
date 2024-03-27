@@ -6,15 +6,15 @@ block content
   button(type="button", class="btn btn-secondary", onclick= "double()") Left
   div(id="double") Two to the power #{power} is #{Math.pow(2, power)}.
 
-script
-  var value = 0;
-  var power = 1;
+  script.
+    var value = 0;
+    var power = 1;
 
-  function double(){
-    value += 1;
-    power *= 2;
-    console.log(value);
-    console.log(power);
-    var result = "Two to the power " + power + " is " + Math.pow(2, power) + ".";
-    document.getElementById("double").innerHTML = result;
-  }
+    function double() {
+      value += 1
+      power *= 2
+      console.log(value)
+      console.log(power)
+      var result = "Two to the power " + power + " is " + Math.pow(2, power) + "."
+      document.getElementById("double").innerHTML = result
+    }
