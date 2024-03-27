@@ -2,3 +2,23 @@ extends layout
 
 block content
   h1= title
+  -  const rows = Number(query.rows);
+  -  const cols = Number(query.cols);
+
+  p The number of rows is: #{rows}
+  p The number of columns is: #{cols}
+
+  if (!Number.isInteger(rows) || !Number.isInteger(cols))
+    p The number of rows and columns must be integers.
+  else if (rows < 3 || rows > 13)
+    p The number of rows must be between 3 and 13.
+  else if (cols < 3 || cols > 13)
+    p The number of columns must be between 3 and 13.
+  else
+    table#outer
+      - for(let i=0; i<rows; i++){
+        tr#middle
+        - for(let j=0; j<cols; j++){
+          td= Math.min(i, j) +1
+        - }
+      - }
