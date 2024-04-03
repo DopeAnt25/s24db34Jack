@@ -1,8 +1,14 @@
 var Drone = require('../models/drone');
 
 //List of all Drones
-exports.drone_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Drone list');
+exports.drone_list = async function(req, res) {
+    try{
+        theDrones = await Drone.find();
+        res.send(theDrones);
+    }catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`)
+    }
 };
 
 //for a specific Drone
