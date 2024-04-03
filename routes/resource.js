@@ -24,6 +24,6 @@ router.put('/drones/:id', drone_controller.drone_update_put);
 router.get('/drones/:id', drone_controller.drone_detail);
 
 //GET request for all drones
-router.get('/drones', drone_controller.drone_list);
+router.get('/drones', drone_controller.drone_view_all_Page);
 
 module.exports = router;

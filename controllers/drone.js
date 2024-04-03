@@ -1,10 +1,10 @@
 var Drone = require('../models/drone');
 
 //List of all Drones
-exports.drone_list = async function(req, res) {
+exports.drone_view_all_Page = async function(req, res) {
     try{
         theDrones = await Drone.find();
-        res.send(theDrones);
+        res.render('drones', {title: 'Drone Search Results', results: theDrones});
     }catch(err){
         res.status(500);
         res.send(`{"error": ${err}}`)

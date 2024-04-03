@@ -2,10 +2,10 @@ extends layout
 
 block content
   h1= title
-  - const results = [{ model: "Phantom 4 Pro", purpose: "Aerial Photography", flight_range: 7 }, { model: "DJI Mavic Air 2", purpose: "Recreational", flight_range: 10 }, { model: "DJI Inspire 2", purpose: "Professional Filmmaking", flight_range: 15 }]
+  - const allresults = results
   .container-fluid
     .row
-      each result in results
+      each result in allresults
         .col-sm-2
           p Model: #{result.model}
           p Purpose: #{result.purpose}
