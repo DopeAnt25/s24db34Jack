@@ -12,8 +12,15 @@ exports.drone_view_all_Page = async function(req, res) {
 };
 
 //for a specific Drone
-exports.drone_detail = function(req, res){
-    res.send('NOT IMPLEMENTED: Drone Detail: ' + req.params.id);
+exports.drone_detail = async function(req, res){
+    console.log("Detail" + req.params.id)
+    try {
+        result = await Drone.findById(req.params.id)
+        res.sends(result)
+    }catch(err){
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found}`);
+    }
 };
 
 //handle cosumte create on post
