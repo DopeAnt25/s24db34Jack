@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title 
+
+  form(id='DroneForm', action="/resource/drones",method="POST")
+    div.form-group
+      label.droneAttr(for='model') Model
+      input#model(type='text',name='model')
+    div.form-group
+      label.droneAttr(for='purpose') Purpose
+      input#purpose(type='text', name='purpose')
+    div.form-group
+      label.droneAttr(for='flight_range') Flight_Range
+      input#flight_range(type='number', name='flight_range')
+      input(type="submit")
+    script.
+      document.forms['DroneForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Save succeded")
+        // TODO handle body
+        }).catch((error) => {
+        // TODO handle error
+          alert("Save failed " + error )
+        });
+      });

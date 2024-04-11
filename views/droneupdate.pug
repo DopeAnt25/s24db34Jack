@@ -1,0 +1,41 @@
+extends layout 
+
+block content
+  h1= title 
+  - let droneid = toShow._id
+  - let dronemodel = toShow.model
+  - let dronepurpose = toShow.purpose
+  - let droneflight_range = toShow.flight_range
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{droneid}
+  - let actionid = "/resource/drones/" + droneid
+    form(id='DroneForm', action= actionid,method="PUT")
+      div.form-group
+        label.droneAttr(for='model') Model
+        input#model(type='text',name='model', value= dronemodel)
+      div.form-group
+        label.droneAttr(for='purpose') Purpose
+        input#purpose(type='text', name='purpose', value= dronepurpose)
+      div.form-group
+        label.droneAttr(for='flight_range') Flight_Range
+        input#flight_range(type='number', name='flight_range', value= droneflight_range)
+      input(type="submit")
+      
+    script.
+      document.forms['DroneForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Save succeded")
+        // TODO handle body
+        }).catch((error) => {
+        // TODO handle error
+          alert("Save failed " + error )
+        });
+      });

@@ -1,0 +1,50 @@
+extends layout 
+
+block content 
+  h1= title
+
+  if(toShow == null)
+    h2 No instance to delete
+  else
+    - let droneid = toShow._id
+    - let dronemodel = toShow.model
+    - let dronepurpose = toShow.purpose
+    - let droneflight_range = toShow.flight_range
+    - let actionid = "/resource/drones/" + droneid
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='droneAttr mr-3') Drone ID is:
+        div #{droneid}
+      div.row
+        div(class='droneAttr mr-3') Drone Model is:
+        div #{dronemodel}
+      div.row
+        div(class='droneAttr mr-3') Drone Purpose is:
+        div #{dronepurpose}
+      div.row
+        div(class='droneAttr mr-3') Drone Flight Range is:
+        div #{droneflight_range}
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+    script.
+      function cancel(){
+        window.location.href='/drones'
+      }
+    script.
+      function deleteOnid(){
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeded")
+          window.location.href='/drones'
+            // TODO handle body
+        }).catch((error) => {
+        // TODO handle error
+          alert("Delete failed " + error )
+        });
+      }

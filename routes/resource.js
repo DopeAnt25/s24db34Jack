@@ -4,6 +4,7 @@ var router = express.Router();
 // require controller modules
 var api_controller = require('../controllers/api');
 var drone_controller = require('../controllers/drone');
+const drone = require('../models/drone');
 
 /// API ROUTE ///
 // GET resources base
