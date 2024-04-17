@@ -1,20 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} this is considered a change in the text
-  button(type="button", class="btn btn-secondary", onclick= "double()") Left
-  div(id="double") Two to the power #{power} is #{Math.pow(2, power)}.
-  a(href="/drones") search page 
-  script.
-    var value = 0;
-    var power = 1;
-
-    function double() {
-      value += 1
-      power *= 2
-      console.log(value)
-      console.log(power)
-      var result = "Two to the power " + power + " is " + Math.pow(2, power) + "."
-      document.getElementById("double").innerHTML = result
-    }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/drones") Take me to the Drones
+    br
+    a(href="/logout") Logout

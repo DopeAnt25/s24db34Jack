@@ -3,10 +3,13 @@ extends layout
 block content
   h1= title
   - const allresults = results
-  .container-fluid
-    .row
+  div(class="container-fluid")
+    div(class="row m-1")
       each result in allresults
-        .col-sm-2
-          p Model: #{result.model}
-          p Purpose: #{result.purpose}
-          p Flight: #{result.flight_range}
+        - let destination = `dispatch(\"/drones/update?id=${result._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{result.model}(#{result.purpose}) is #{result.flight_range}
+          button.btn( class="btn-primary ml-1", onclick=destination) Update
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
