@@ -4,11 +4,17 @@ block content
   h1= title
   - const allresults = results
   div(class="container-fluid")
+  - let create = `dispatch('/drones/create')`
+    button.btn(class="btn-primary ml-1", onclick=create) Create
     div(class="row m-1")
       each result in allresults
-        - let destination = `dispatch(\"/drones/update?id=${result._id}\")`
+        - let update = `dispatch("/drones/update?id=${result._id}")`
+        - let detail = `dispatch("/drones/detail?id=${result._id}")`
+        - let deletes = `dispatch("/drones/delete?id=${result._id}")`
         div(class="row-sm-2", class="m-1") Item #{result.model}(#{result.purpose}) is #{result.flight_range}
-          button.btn( class="btn-primary ml-1", onclick=destination) Update
+          button.btn(class="btn-primary ml-1", onclick=update) Update
+          button.btn(class="btn-primary ml-1", onclick=detail) Detail
+          button.btn(class="btn-primary ml-1", onclick=deletes) Delete
   script.
     function dispatch(path){
       window.location.href=path
